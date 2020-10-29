@@ -15,6 +15,15 @@ void fastLED_setup(void) {
 
 void payload(void) {
   byte rainbowhsv = 0;
+
+  rainbowhsv++;
+  if (rainbowhsv > 255)
+    rainbowhsv = 0;
+  for (int i = 0; i < LED_COUNT; i++) {
+    leds[i] = CHSV(i - (rainbowhsv * 2), 255, 255);
+  }
+  FastLED.show();
+
 }
 // void payload(void) { Serial.println(" 'payload();' in payload.cpp reached. "); }
 

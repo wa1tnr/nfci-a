@@ -5,10 +5,10 @@ boolean waiting ;
 char ch;
 
 void reading(void) {
-    ch = Serial.read();
-    Serial.print(' '); Serial.print("READING ");
-    Serial.print(' '); Serial.print(" waiting is true ");
-    Serial.print(ch);
+  ch = Serial.read();
+  Serial.print(' '); Serial.print("READING ");
+  Serial.print(' '); Serial.print(" waiting is true ");
+  Serial.print(ch);
 }
 
 void is_command_waiting(void) {
@@ -58,7 +58,7 @@ void setup (void) {
   Serial.begin(115200);
   delay(5600);
 
-// - - -   application (payload)   - - -
+  // - - -   application (payload)   - - -
 
   fastLED_setup();
 }
