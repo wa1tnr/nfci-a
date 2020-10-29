@@ -3,6 +3,7 @@
 
 boolean waiting ;
 char ch;
+char decision; // switcher
 
 void reading(void) {
   ch = Serial.read();

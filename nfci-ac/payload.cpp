@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <FastLED.h> // FastLED by Daniel Garcia Version 3.3.3 - downloaded 29 October 2020
+#include "nnfci-ac_sketch.h" // for char decision
 
 #define LED_PIN 8 // from human memory .. D8 confirmed.
 #define LED_COUNT 5 // didn't count the array - has more than five for sure ;)
@@ -15,7 +16,7 @@ void fastLED_setup(void) {
 
 byte rainbowhsv = 0;
 
-void payload(void) {
+void payload_a(void) {
 
   rainbowhsv++;
   if (rainbowhsv > 255)
@@ -23,10 +24,18 @@ void payload(void) {
   for (int i = 0; i < LED_COUNT; i++) {
     leds[i] = CHSV(i - (rainbowhsv * 2), 255, 255);
   }
-  delay(200); // kludge - want to see if it's doing anything interesting yet
+  delay(2);
   FastLED.show();
-  Serial.println("DEBUG fastled show");
+  // Serial.println("DEBUG fastled show");
 }
 // void payload(void) { Serial.println(" 'payload();' in payload.cpp reached. "); }
+
+void payload(void) {
+  decision = 'b';
+  if  (! (decision == 'b')) {
+    payload_a(); // will be a switcher at some point
+  }
+//payload_b();
+}
 
 //END.
