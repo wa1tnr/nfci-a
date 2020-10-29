@@ -1,4 +1,4 @@
-extern int slice;
+// extern int slice;
 extern char decision;
 
 //END.
