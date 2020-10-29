@@ -10,7 +10,7 @@
 CRGB leds[LED_COUNT]; // didn't check the lib to see which variant the CPX would prefer. ;)
 
 void fastLED_setup(void) {
-  // nothing yet
+  FastLED.addLeds<WS2812B, LED_PIN, GRB>(leds, LED_COUNT);
 }
 
 byte rainbowhsv = 0;
