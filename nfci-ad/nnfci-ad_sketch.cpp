@@ -1,10 +1,13 @@
 #include <Arduino.h>
 #include "payload.h"
+#define TIME_WEIGHT 1295
+#define HEART_BEAT_TIME 333
 
 boolean waiting ;
 // int  slice; // time slice
 char ch;
 char decision; // switcher
+int old_time, new_time ;
 
 void reading(void) {
   ch = Serial.read();
@@ -27,11 +30,6 @@ void is_command_waiting(void) {
   }
 }
 
-int old_time, new_time ;
-
-#define TIME_WEIGHT 1295
-#define HEART_BEAT_TIME 333
-
 void payload_time(void) {
   for (volatile int i = TIME_WEIGHT; i > 0; i--) {
   }
@@ -52,7 +50,6 @@ void slower(void) {
     noop();
   }
 }
-
 
 void activity(void) {
   payload();

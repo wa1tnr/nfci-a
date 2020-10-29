@@ -6,7 +6,7 @@
 #include "nnfci_sketch.h" // for char decision
 
 #define LED_PIN 8 // from human memory .. D8 confirmed.
-#define LED_COUNT 9 // the first n RGB pixels to use
+#define LED_COUNT 10 // the first n RGB pixels to use
 // #define BRIGHTNESS  8
 // #define BRIGHTNESS  1
 #define BRIGHTNESS  127
@@ -19,8 +19,8 @@
 
 // change SLICES to larger value for slower color changing
 
-#define SLICES 88
-#define SLICES 4
+// #define SLICES 88
+#define SLICES 8
 
 // 53 not quite slow enough - bring it down to 3 to see colors strobe wildly.
 
