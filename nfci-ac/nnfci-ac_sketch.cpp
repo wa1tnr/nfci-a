@@ -7,9 +7,15 @@ char decision; // switcher
 
 void reading(void) {
   ch = Serial.read();
-  Serial.print(' '); Serial.print("READING ");
-  Serial.print(' '); Serial.print(" waiting is true ");
   Serial.print(ch);
+
+  // - - - -   - - - -
+  if (decision == 'b') return ; // single-shot (latching)
+
+  decision = ' '; // space - placeholder non-decision
+  if (ch == 'b') { decision = 'b'; }
+  Serial.print(' '); Serial.print("READING ");
+  Serial.print(' '); Serial.print(" fall-through clause ");
 }
 
 void is_command_waiting(void) {
