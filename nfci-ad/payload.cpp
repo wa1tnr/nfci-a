@@ -10,7 +10,17 @@
 
 
 // change SLICES to larger value for slower color changing
-#define SLICES 93
+
+#define SLICES 88
+
+// 53 not quite slow enough - bring it down to 3 to see colors strobe wildly.
+
+// #define SLICES  3 // not quite as frantic human-speed panning of color/hue
+// #define SLICES  2 // slow enough that it feels like a person could be moving a control lever or knob
+// #define SLICES  1 // can almost grow fond of a seen color for a split second
+// #define SLICES  0 // begin to see individual hues
+// #define SLICES -1 // jumping color strobe
+// #define SLICES -2 // steady red
 
 CRGB leds[LED_COUNT]; // didn't check the lib to see which variant the CPX would prefer. ;)
 
