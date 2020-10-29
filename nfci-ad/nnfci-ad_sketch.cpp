@@ -3,6 +3,10 @@
 #define TIME_WEIGHT 1295
 #define HEART_BEAT_TIME 333
 
+#define SHOW_BEAT false
+#undef SHOW_BEAT
+#define SHOW_BEAT true
+
 boolean waiting ;
 // int  slice; // time slice
 char ch;
@@ -33,7 +37,9 @@ void is_command_waiting(void) {
 void payload_time(void) {
   for (volatile int i = TIME_WEIGHT; i > 0; i--) {
   }
-  Serial.print(". "); // heart beat
+  if (SHOW_BEAT) {
+    Serial.print(". "); // heart beat
+  }
 }
 
 void noop(void) { // no op

@@ -20,7 +20,7 @@
 // change SLICES to larger value for slower color changing
 
 // #define SLICES 88
-#define SLICES 8
+#define SLICES 0
 
 // 53 not quite slow enough - bring it down to 3 to see colors strobe wildly.
 
@@ -43,7 +43,7 @@ void fastLED_setup(void) {
   FastLED.show();
 }
 
-void increment_hsv(void) {
+void decrement_hsv(void) {
   if (rainbowhsv < 1) rainbowhsv = 256;
   rainbowhsv--;
 }
@@ -53,11 +53,10 @@ void increment_hsv(void) {
 // 1   >  0
 // 0   >  256 > 255
 
-
 void increment_slice(void) {
   slice++;
   if (slice == SLICES) {
-    increment_hsv();
+    decrement_hsv();
   }
   if (slice > SLICES) slice = -1;
 }
