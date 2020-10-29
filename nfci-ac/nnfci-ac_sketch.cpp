@@ -57,6 +57,10 @@ void setup (void) {
   waiting = false ;
   Serial.begin(115200);
   delay(5600);
+
+// - - -   application (payload)   - - -
+
+  fastLED_setup();
 }
 
 void loop (void) {
