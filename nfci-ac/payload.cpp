@@ -31,7 +31,7 @@ void payload_a(void) {
 // void payload(void) { Serial.println(" 'payload();' in payload.cpp reached. "); }
 
 void payload(void) {
-  decision = 'b';
+  //  decision = 'b';  // now set in main program
   if  (! (decision == 'b')) {
     payload_a(); // will be a switcher at some point
   }
