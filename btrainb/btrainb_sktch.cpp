@@ -1,7 +1,21 @@
 #include <Arduino.h>
 
-void setup (void) { }
+boolean waiting ;
 
-void loop (void) {}
+void is_command_waiting(void) { }
+void activity(void) { }
+
+void setup (void) {
+  waiting = false ;
+}
+
+void loop (void) {
+  is_command_waiting();
+  while (! waiting) {
+    activity();
+  }
+
+  delay(100);
+}
 
 //END.
