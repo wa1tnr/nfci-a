@@ -1,0 +1,24 @@
+Thu Oct 29 17:14:46 UTC 2020
+
+Instructions
+
+cd to the lastest version.
+
+  nfci-ac is the latest version at the moment (see timestamp, above).
+
+Compile and upload in Arduino IDE
+(current target: Adafruit Circuit Playground Express, NeoPixels on D8).
+
+Connect to target USB port (in linux, this is /dev/ttyACM0).
+
+Stuff will happen on its own.
+
+Any keystroke except for 'b' (just one letter, b) will simply echo.
+
+A keystroke of 'b' halts the changing color routine
+(latches it, freezing the color hue where it was at the moment
+the key was pressed).
+
+
+That's all that's going on.  Soon, provision will be made for a
+trap of keystroke 'c' as well, but that's not done yet.
