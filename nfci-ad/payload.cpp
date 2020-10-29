@@ -6,12 +6,21 @@
 #include "nnfci_sketch.h" // for char decision
 
 #define LED_PIN 8 // from human memory .. D8 confirmed.
-#define LED_COUNT 5 // didn't count the array - has more than five for sure ;)
+#define LED_COUNT 9 // the first n RGB pixels to use
+// #define BRIGHTNESS  8
+// #define BRIGHTNESS  1
+#define BRIGHTNESS  127
 
+// HSV tuple:
+// byte hue - see below
+// how much white is mixed into this color:
+#define SATUR 255
+#define BRITE 32
 
 // change SLICES to larger value for slower color changing
 
 #define SLICES 88
+#define SLICES 4
 
 // 53 not quite slow enough - bring it down to 3 to see colors strobe wildly.
 
@@ -22,37 +31,49 @@
 // #define SLICES -1 // jumping color strobe
 // #define SLICES -2 // steady red
 
+byte rainbowhsv = 0;
+byte hue ;
+int slice;
+
 CRGB leds[LED_COUNT]; // didn't check the lib to see which variant the CPX would prefer. ;)
 
 void fastLED_setup(void) {
   FastLED.addLeds<WS2812B, LED_PIN, GRB>(leds, LED_COUNT);
+  FastLED.setBrightness( BRIGHTNESS );
+  FastLED.show();
 }
-
-byte rainbowhsv = 0;
 
 void increment_hsv(void) {
-  rainbowhsv++;
-  if (rainbowhsv > 255)
-    rainbowhsv = 0;
+  if (rainbowhsv < 1) rainbowhsv = 256;
+  rainbowhsv--;
 }
+
+// 3   >  2
+// 2   >  1
+// 1   >  0
+// 0   >  256 > 255
+
 
 void increment_slice(void) {
   slice++;
+  if (slice == SLICES) {
+    increment_hsv();
+  }
   if (slice > SLICES) slice = -1;
 }
+
 
 void payload_a(void) {
 
   increment_slice();
-  if (slice == SLICES) {
-    increment_hsv();
-  }
 
   for (int i = 0; i < LED_COUNT; i++) {
-    leds[i] = CHSV(i - (rainbowhsv * 2), 255, 255);
+    hue = i - (rainbowhsv * 2);
+    // leds[i] = CHSV(i - (rainbowhsv * 2), SATUR, BRITE);
+    leds[i] = CHSV(hue, SATUR, BRITE);
+    FastLED.show();
   }
-  delay(2);
-  FastLED.show();
+  // FastLED.show();
 }
 
 void payload_b(void) { } // nop
