@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "payload.h"
 
 boolean waiting ;
 char ch;
@@ -49,6 +50,7 @@ void slower(void) {
 
 void activity(void) {
   slower();
+  payload();
 }
 
 void setup (void) {
