@@ -9,6 +9,9 @@
 
 CRGB leds[LED_COUNT]; // didn't check the lib to see which variant the CPX would prefer. ;)
 
+void fastLED_setup(void) {
+}
+
 void payload(void) { }
 // void payload(void) { Serial.println(" 'payload();' in payload.cpp reached. "); }
 
