@@ -1,0 +1,8 @@
+Thu Oct 29 14:59:36 UTC 2020
+
+  Adafruit Circuit Playground Express (CPX)
+
+  ATSAMD21G18A MCU
+
+  Array of NeoPixels on-board
+
