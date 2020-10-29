@@ -20,7 +20,7 @@
 // change SLICES to larger value for slower color changing
 
 // #define SLICES 88
-#define SLICES 0
+#define SLICES 3
 
 // 53 not quite slow enough - bring it down to 3 to see colors strobe wildly.
 
