@@ -1,0 +1,21 @@
+  $ date
+Thu Oct 29 14:49:11 UTC 2020
+
+  $ ls
+nfci-aa  README.md
+
+  $ mkdir t
+  $ cd t
+  $ cp -pR ../nfci-aa .
+  $ mv nfci-aa nfci-ab
+  $ mv nfci-ab ..
+  $ cd ..
+
+  $ pwd
+/this/path/git-repos/nfci-a
+
+  $ git branch | cat
+* edits-a-
+  main
+
+  $ 
