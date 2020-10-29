@@ -58,10 +58,16 @@ void activity(void) {
   payload();
 }
 
+void print_login_msg(void) {
+  Serial.println(" press 'b' to break    or    press 'c' to continue ");
+  Serial.println("\n wrt color strobe/changes.");
+}
+
 void setup (void) {
   waiting = false ;
   Serial.begin(115200);
   delay(5600);
+  print_login_msg();
 
   // - - -   application (payload)   - - -
 
