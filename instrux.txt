@@ -1,10 +1,10 @@
-Thu Oct 29 17:14:46 UTC 2020
+Thu Oct 29 20:20:10 UTC 2020
 
 Instructions
 
 cd to the lastest version.
 
-  nfci-ac is the latest version at the moment (see timestamp, above).
+  nfci-ad is the latest version at the moment (see timestamp, above).
 
 Compile and upload in Arduino IDE
 (current target: Adafruit Circuit Playground Express, NeoPixels on D8).
