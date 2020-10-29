@@ -1,0 +1,5 @@
+Thu Oct 29 16:15:07 UTC 2020
+
+  * program runs normally even with new FastLED refs included.
+
+  * doesn't do anything visible with NeoPixel array (on CPX) just yett. ;)
