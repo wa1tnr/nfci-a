@@ -2,7 +2,7 @@
 #include "payload.h"
 
 boolean waiting ;
-int  slice; // time slice
+// int  slice; // time slice
 char ch;
 char decision; // switcher
 
