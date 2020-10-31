@@ -14,76 +14,81 @@ char decision; // switcher
 int old_time, new_time ;
 
 void reading(void) {
-  ch = Serial.read();
-  Serial.print(ch);
+    ch = Serial.read();
+    Serial.print(ch);
 
-  // - - - -   - - - -
+    // - - - -   - - - -
 
-  if (ch == 'b') { decision = 'b'; }
-  if (ch == 'c') { decision = 'c'; }
-  ch = ' ' ;
+    if (ch == 'b') {
+        decision = 'b';
+    }
+    if (ch == 'c') {
+        decision = 'c';
+    }
+    ch = ' ' ;
 }
 
 void is_command_waiting(void) {
-  waiting = false ;
-  if (! Serial.available()) {
     waiting = false ;
-  } else {
-    waiting = true ;
-    reading();
-  }
+    if (! Serial.available()) {
+        waiting = false ;
+    } else {
+        waiting = true ;
+        reading();
+    }
 }
 
 void payload_time(void) {
-  for (volatile int i = TIME_WEIGHT; i > 0; i--) {
-  }
-  if (SHOW_BEAT) {
-    Serial.print(". "); // heart beat
-  }
+    for (volatile int i = TIME_WEIGHT; i > 0; i--) {
+    }
+    if (SHOW_BEAT) {
+        Serial.print(". "); // heart beat
+    }
 }
 
 void noop(void) { // no op
 }
 
 void slower(void) {
-  int delta_time;
-  new_time = millis();
-  delta_time = new_time - old_time ;
-  if (delta_time > HEART_BEAT_TIME) {
-    old_time = new_time ;
-    payload_time();
-  } else {
-    noop();
-  }
+    int delta_time;
+    new_time = millis();
+    delta_time = new_time - old_time ;
+    if (delta_time > HEART_BEAT_TIME) {
+        old_time = new_time ;
+        payload_time();
+    } else {
+        noop();
+    }
 }
 
 void activity(void) {
-  payload();
+    // payload();
 }
 
 void print_login_msg(void) {
-  Serial.println(" press 'b' to break    or    press 'c' to continue ");
-  Serial.println("\n wrt color strobe/changes.");
+    Serial.println(" press 'b' to break    or    press 'c' to continue ");
+    Serial.println("\n wrt color strobe/changes.");
+    Serial.println("\n Revision: Sat Oct 31 01:58:36 UTC 2020");
 }
 
 void setup (void) {
-  waiting = false ;
-  Serial.begin(115200);
-  delay(5600);
-  print_login_msg();
+    waiting = false ;
+    Serial.begin(115200);
+    delay(5600);
+    print_login_msg();
 
-  // - - -   application (payload)   - - -
+    // - - -   application (payload)   - - -
 
-  fastLED_setup();
+    fastLED_setup();
 }
 
 void loop (void) {
-  waiting = false ;
-  while (! waiting) {
-    activity();
-    slower(); // can comment this out
-    is_command_waiting();
-  }
+    waiting = false ;
+    while (! waiting) {
+        activity();
+        slower(); // can comment this out
+        is_command_waiting();
+    }
 }
 
 //END.

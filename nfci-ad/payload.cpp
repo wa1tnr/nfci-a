@@ -38,14 +38,14 @@ int slice;
 CRGB leds[LED_COUNT]; // didn't check the lib to see which variant the CPX would prefer. ;)
 
 void fastLED_setup(void) {
-  FastLED.addLeds<WS2812B, LED_PIN, GRB>(leds, LED_COUNT);
-  FastLED.setBrightness( BRIGHTNESS );
-  FastLED.show();
+    FastLED.addLeds<WS2812B, LED_PIN, GRB>(leds, LED_COUNT);
+    FastLED.setBrightness( BRIGHTNESS );
+    FastLED.show();
 }
 
 void decrement_hsv(void) {
-  if (rainbowhsv < 1) rainbowhsv = 256;
-  rainbowhsv--;
+    if (rainbowhsv < 1) rainbowhsv = 256;
+    rainbowhsv--;
 }
 
 // 3   >  2
@@ -54,43 +54,43 @@ void decrement_hsv(void) {
 // 0   >  256 > 255
 
 void increment_slice(void) {
-  slice++;
-  if (slice == SLICES) {
-    decrement_hsv();
-  }
-  if (slice > SLICES) slice = -1;
+    slice++;
+    if (slice == SLICES) {
+        decrement_hsv();
+    }
+    if (slice > SLICES) slice = -1;
 }
 
 
 void payload_a(void) {
 
-  increment_slice();
+    increment_slice();
 
-  for (int i = 0; i < LED_COUNT; i++) {
-    hue = i - (rainbowhsv * 2);
-    // leds[i] = CHSV(i - (rainbowhsv * 2), SATUR, BRITE);
-    leds[i] = CHSV(hue, SATUR, BRITE);
-    FastLED.show();
-  }
-  // FastLED.show();
+    for (int i = 0; i < LED_COUNT; i++) {
+        hue = i - (rainbowhsv * 2);
+        // leds[i] = CHSV(i - (rainbowhsv * 2), SATUR, BRITE);
+        leds[i] = CHSV(hue, SATUR, BRITE);
+        FastLED.show();
+    }
+    // FastLED.show();
 }
 
 void payload_b(void) { } // nop
 
 void payload_c(void) {
-  decision = ' ';
+    decision = ' ';
 }
 
 void payload(void) {
-  if (decision == 'b') {
-    payload_b();
-    return ;
-  }
-  if (decision == 'c') {
-    payload_c();
-    return ;
-  }
-  payload_a(); // default payload - color wheel
+    if (decision == 'b') {
+        payload_b();
+        return ;
+    }
+    if (decision == 'c') {
+        payload_c();
+        return ;
+    }
+    payload_a(); // default payload - color wheel
 }
 
 //END.

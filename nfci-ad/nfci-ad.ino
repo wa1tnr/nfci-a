@@ -1,7 +1,7 @@
 // Thu Oct 29 22:23:34 UTC 2020
 // file nfci-ax.ino
 
-// cemarak
+// cemarak delphi kurbafio grevutz
 // karvuto
 
 // older:
