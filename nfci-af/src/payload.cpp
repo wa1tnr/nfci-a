@@ -62,6 +62,30 @@ void increment_slice(void) {
 }
 
 
+void payload_r(void) {
+    for (int i = 0; i < LED_COUNT; i++) {
+        hue = 1;
+        leds[i] = CHSV(hue, SATUR, BRITE);
+    }
+    FastLED.show();
+}
+
+void payload_g(void) {
+    for (int i = 0; i < LED_COUNT; i++) {
+        hue = 100; // 1 red ; 42 yellow ; 75 pea green-yellow  ; 120 cyan
+        leds[i] = CHSV(hue, SATUR, BRITE);
+    }
+    FastLED.show();
+}
+
+void payload_b(void) {
+    for (int i = 0; i < LED_COUNT; i++) {
+        hue = 170;
+        leds[i] = CHSV(hue, SATUR, BRITE);
+    }
+    FastLED.show();
+}
+
 void payload_a(void) {
 
     increment_slice();
@@ -75,21 +99,16 @@ void payload_a(void) {
     // FastLED.show();
 }
 
-void payload_b(void) { } // nop
+void payload_d(void) { } // nop
 
-void payload_c(void) {
-    decision = ' ';
-}
+void payload_c(void) { decision = ' '; }
 
 void payload(void) {
-    if (decision == 'b') {
-        payload_b();
-        return ;
-    }
-    if (decision == 'c') {
-        payload_c();
-        return ;
-    }
+    if (decision == 'b') { payload_b(); return ; }
+    if (decision == 'c') { payload_c(); return ; }
+    if (decision == 'd') { payload_d(); return ; }
+    if (decision == 'g') { payload_g(); return ; }
+    if (decision == 'r') { payload_r(); return ; }
     payload_a(); // default payload - color wheel
 }
 

@@ -1,3 +1,4 @@
+// Thu 28 Jul 13:51:10 UTC 2022
 #include <Arduino.h>
 #include "payload.h"
 #define TIME_WEIGHT 1295
@@ -7,7 +8,7 @@
 #undef SHOW_BEAT
 #define SHOW_BEAT true
 
-#define DATE_STAMP "Sat 12 Feb 13:38:26 UTC 2022"
+#define DATE_STAMP "Thu 28 Jul 13:51:10 UTC 2022"
 
 #warning The program expects you to connect via Serial Monitor at runtime.
 // the above applies equally to any serial terminal program,
@@ -28,12 +29,11 @@ void reading(void) {
 
     // - - - -   - - - -
 
-    if (ch == 'b') {
-        decision = 'b';
-    }
-    if (ch == 'c') {
-        decision = 'c';
-    }
+    if (ch == 'b') { decision = 'b'; }
+    if (ch == 'c') { decision = 'c'; }
+    if (ch == 'd') { decision = 'd'; }
+    if (ch == 'r') { decision = 'r'; }
+    if (ch == 'g') { decision = 'g'; }
     ch = ' ' ;
 }
 
@@ -75,8 +75,9 @@ void activity(void) {
 }
 
 void print_login_msg(void) {
-    Serial.println(" press 'b' to break    or    press 'c' to continue ");
+    Serial.println(" press 'd' to break    or    press 'c' to continue ");
     Serial.println("\n wrt color strobe/changes.");
+    Serial.println("\n\n  or choose 'r' 'g' 'b' for color primaries. ");
     Serial.print("\n Revision: ");
     Serial.println(DATE_STAMP);
 }
@@ -94,6 +95,8 @@ void blink(void) {
     delay(4400);
 }
 
+extern void goldilo(void);
+
 void setup (void) {
     waiting = false ;
     Serial.begin(115200);
@@ -105,6 +108,8 @@ void setup (void) {
     }
     // delay(5600);
     print_login_msg();
+    goldilo();
+    Serial.println(" HALTING for FOO 793bc");
 
     // - - -   application (payload)   - - -
 
